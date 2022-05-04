@@ -4,10 +4,12 @@ import android.opengl.Visibility
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.rezababaei.weatherbylocation.R
 import com.rezababaei.weatherbylocation.core.BaseFragment
 import com.rezababaei.weatherbylocation.databinding.HomeFragmentBinding
+import com.rezababaei.weatherbylocation.ui.location.adapter.ViewAdapterLocation
 import com.rezababaei.weatherbylocation.util.loadImage
 import com.rezababaei.weatherbylocation.util.unixTimestampToDateTimeString
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,6 +42,10 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>(R.layout.h
                 binding.ivWeather.loadImage(weatherConditionIconUrl)
                 binding.tvCondition.text=it.current?.weather?.get(0)?.description
 
+//                binding.recyclerViewDays.layoutManager= LinearLayoutManager(this)
+                binding.recyclerViewDays.adapter= it.daily?.let { it1 -> ViewAdapterLocation(it1) }
+
+
                 showViewsAfterLoading()
             }
         }
@@ -48,9 +54,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>(R.layout.h
 
     private fun showViewsAfterLoading() {
         binding.progressBar.visibility = View.GONE
-        binding.tvTemp.visibility = View.VISIBLE
-        binding.ivWeather.visibility = View.VISIBLE
-        binding.tvCondition.visibility = View.VISIBLE
+        binding.linearLayoutWeather.visibility=View.VISIBLE
     }
 
 

@@ -4,43 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.rezababaei.weatherbylocation.ui.HomeViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        tools:context=".ui.HomeFragment">
+        android:background="@color/white"
+        >
+
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_height="32dp"/>
-        <TextView
-            android:id="@+id/tvTemp"
+            android:layout_height="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="vertical"
             android:visibility="gone"
-            android:text="temp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".ui.HomeFragment">
 
-        <ImageView
-            android:id="@+id/iv_weather"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            app:srcCompat="@drawable/ic_image"
-            android:visibility="gone"/>
-        <TextView
-            android:id="@+id/tv_condition"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tvTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="temp"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/iv_weather"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:srcCompat="@drawable/ic_image" />
+
+            <TextView
+                android:id="@+id/tv_condition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="temp"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_days"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:text="temp"
-            android:visibility="gone"/>
+            android:orientation="horizontal"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/weather_item_view" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>
