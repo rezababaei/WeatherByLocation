@@ -36,3 +36,34 @@ fun Int.unixTimestampToTimeString() : String {
 
     return this.toString()
 }
+
+fun Int.unixTimestampToDayString() : String {
+
+    try {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = this*1000.toLong()
+
+        val outputDateFormat = SimpleDateFormat("EEEE", Locale.ENGLISH)
+        outputDateFormat.timeZone = TimeZone.getDefault() // user's default time zone
+        return outputDateFormat.format(calendar.time)
+
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+    return this.toString()
+}
+
+fun Int.isToday():Boolean{
+    try {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = this*1000.toLong()
+
+        val outputDateFormat = SimpleDateFormat("dd MMM, yyyy - hh:mm a", Locale.ENGLISH)
+        outputDateFormat.timeZone = TimeZone.getDefault() // user's default time zone
+        return false
+
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+    return false
+}

@@ -28,3 +28,6 @@ fun View.isVisInvis(isVisible: Boolean) {
 fun ImageView.loadImage(url: String) {
     Glide.with(context).load(url).placeholder(R.drawable.ic_image).into(this)
 }
+
+
+

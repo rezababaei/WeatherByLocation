@@ -44,8 +44,7 @@ object NetworkModules {
     @Singleton
     fun provideRetrofitClient(
         okHttp: OkHttpClient,
-        moshiConverterFactory: MoshiConverterFactory
-    ): Retrofit = Retrofit.Builder()
+        moshiConverterFactory: MoshiConverterFactory): Retrofit = Retrofit.Builder()
         .addConverterFactory(moshiConverterFactory)
         .client(okHttp)
         .baseUrl(BuildConfig.BASE_URL)
